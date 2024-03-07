@@ -12,7 +12,9 @@ def response_generator(agent, prompt):
         yield word + " "
         time.sleep(0.05)
 
-agent = return_agent()
+api_key = st.secrets["OPEN_API_KEY"]
+
+agent = return_agent(api_key)
 
 st.title("DAIT Assistant")
 

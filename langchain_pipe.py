@@ -16,11 +16,11 @@ class insulin_dose(BaseTool):
     def _arun(self, params):
         raise NotImplementedError("This tool does not support async")
     
-def return_agent():
+def return_agent(api_key):
 
     # initialize LLM (we use ChatOpenAI because we'll later define a `chat` agent)
     llm = ChatOpenAI(
-            openai_api_key="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",
+            openai_api_key= api_key,
             temperature=0.2,
             model_name='gpt-4'
     )
