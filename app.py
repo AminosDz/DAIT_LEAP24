@@ -1,21 +1,18 @@
 import streamlit as st
 import random
 import time
-
+from langchain_pipe import return_agent
 
 # Streamed response emulator
-def response_generator():
-    response = random.choice(
-        [
-            "Hello there! How can I assist you today?",
-            "Hi, human! Is there anything I can help you with?",
-            "Do you need help?",
-        ]
-    )
+def response_generator(agent, prompt):
+    response_dict = agent(prompt)
+    response = response_dict["output"]
+    print(response)
     for word in response.split():
         yield word + " "
         time.sleep(0.05)
 
+agent = return_agent()
 
 st.title("DAIT Assistant")
 
@@ -38,6 +35,6 @@ if prompt := st.chat_input("What is up?"):
 
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        response = st.write_stream(response_generator())
+        response = st.write_stream(response_generator(agent, prompt))
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
