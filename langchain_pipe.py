@@ -20,7 +20,7 @@ def return_agent():
 
     # initialize LLM (we use ChatOpenAI because we'll later define a `chat` agent)
     llm = ChatOpenAI(
-            openai_api_key="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",
+            openai_api_key="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",
             temperature=0.2,
             model_name='gpt-4'
     )
